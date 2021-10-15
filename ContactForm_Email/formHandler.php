@@ -9,10 +9,13 @@ $confirmMessage = "
         <head>
             <title>Confirmation Email</title>
         </head>
-        <body style='background-color: #e8b178; color:#37261f; '>
-            <div style=''>
+        <body style='background-color:#e8b178; padding: 3em; font-size: 1.3em; box-sizing:border-box; color:#37261f; font-family: Georgia, serif;'>
+            <div style='background-color:rgb(241, 205, 164); border: 3px dashed #37261f; padding:2em;'> 
                 <p>$contactName,</p> 
-                <p>Thank you! Your information has been received. We will contact you within 3 business days about the status of your concern.</p>
+                <p>Thank you for contacting us. We have received your information and will contact you within 3 business days.</p>
+                <br>
+                <p>We love hearing from our customers and look forward to seeing you in the store!</p>
+                <br>
                     <p>
                     <strong>Savanna’s Coffee House</strong><br>
                     604 24th Street<br>
