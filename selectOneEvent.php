@@ -60,14 +60,15 @@ require "dbConnect.php";
 
 try 
 {
-    $sql = "SELECT events_id, events_name, events_description, events_presenter, events_date, events_time, events_date_inserted, events_date_updated FROM wdv341_events";
+    $sql = "SELECT events_id, events_name, events_description, events_presenter, events_date, events_time, events_date_inserted, events_date_updated FROM wdv341_events WHERE events_id=1";
     $stmt = $conn->prepare($sql);
     
     $stmt->execute();
 
-    $arrayOfRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $arrayOfRows = $stmt->fetchall(PDO::FETCH_ASSOC);
 }
-catch(PDOException $e){
+catch(PDOException $e)
+{
     echo "Error: " . $e->getMessage();
 }
 ?>
@@ -75,8 +76,9 @@ catch(PDOException $e){
 <html>
 <head>
 <style>
+
 table, th, td {
-  border: 2px solid #445434;
+  border: 2px solid #cc0000;
 }
 table {
   width: 100%;
@@ -85,13 +87,13 @@ td {
     padding: 15px;
 }
 th {
-    background:#d8f3e5;
+    background:#ffcccc;
 }
-
 </style>
 
 
 </head>
+
     <body>
 <table>
 <tr>
@@ -107,18 +109,18 @@ th {
     
 <?php
 
-foreach($arrayOfRows as $oneEvent) {
+foreach($arrayOfRows as $oneRow) {
 
     echo "<tr>";
 
-    echo "<td>".$oneEvent["events_id"]."</td>";
-    echo "<td>".$oneEvent["events_name"]."</td>";
-    echo "<td>".$oneEvent["events_description"]."</td>";
-    echo "<td>".$oneEvent["events_presenter"]."</td>";
-    echo "<td>".$oneEvent["events_date"]."</td>";
-    echo "<td>".$oneEvent["events_time"]."</td>";
-    echo "<td>".$oneEvent["events_date_inserted"]."</td>";
-    echo "<td>".$oneEvent["events_date_updated"]."</td>";
+    echo "<td>".$oneRow["events_id"]."</td>";
+    echo "<td>".$oneRow["events_name"]."</td>";
+    echo "<td>".$oneRow["events_description"]."</td>";
+    echo "<td>".$oneRow["events_presenter"]."</td>";
+    echo "<td>".$oneRow["events_date"]."</td>";
+    echo "<td>".$oneRow["events_time"]."</td>";
+    echo "<td>".$oneRow["events_date_inserted"]."</td>";
+    echo "<td>".$oneRow["events_date_updated"]."</td>";
 
     echo "</tr>";
 

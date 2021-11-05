@@ -23,9 +23,9 @@
         $stmt = $conn->prepare($sql); //prepared statement
         $stmt->execute();
 
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);  //grabbing rows
 
-            echo "<h2>" . $result['product_name'] . "</h2>";
+            //echo "<h2>" . $result['product_name'] . "</h2>";  //showing the info for product
 
         }
         catch(PDOException $e){
@@ -55,42 +55,49 @@
         <p>Products for your Home and School Office</p>
     </header>
     <section>
-        <!-- This .productBlock is an example displaying the format/structure of each product.
-        It will be replaced by the actual data. Please loop through all of your products and display them using
-        this layout and following the instructions of the assignment. -->
-
-        
-        <?php  //beginning of foreach section
-            foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $result) {
-                ?>
-<!--shows all the product blocks no matter how mant are in the database so we don't have to code every single one-->
-       
-
-
+        <?php
+        foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $result)
+            {
+        ?>
         <div class="productBlock">
-            <div class="productImage">
-                <image src="productImages/<?php echo $result['product_image']; ?>">
-            </div>
-            <p class="productName"><?php echo $result['product_name']; ?></p>
-            <p class="productDesc"><?php echo $result['product_description']; ?></p>
-            <p class="productPrice">$<?php echo $result['product_price']; ?></p>  <!--add the dollar sign in between tags so it displays -->
-            <!-- The productStatus element should only be displayed if there is product_status data in the record -->
-            <?php
-                if($result['product_status'] != "" ){
-                    ?>
-                    <p class="productStatus">New Item!</p>
-                    <?php
-                    //display the element on the page with the status info
-                    
-                }
-
-            ?>
-            <p class="productStatus">New Item!</p>            
-            <p class="productInventory"><?php echo $result['product_inStock']; ?> in Stock!</p>
+        <div class="productImages">
+            <image src="product_images/<?php echo $result['product_image']; ?>">
         </div>
-                <?php    
-            } //end of the foreach() section
-            ?>
+
+            <p class="productName"><?php echo $result['product_name']; ?></p>
+            <p class="productDesc">
+            <?php echo $result['product_description']; ?></p>
+            <p class="productPrice"><!--showing price of products--> 
+            $<?php echo $result['product_price'];?>
+                </p>
+            <?php
+            if ( $result['product_status'] != "" ) {
+                ?>
+            <p class="productStatus"> <!--status of product-->
+                <?php echo $result['product_status']; ?>
+                        </p>
+                <?php
+                } // end stmt
+                ?>
+                    <!--checking inventoty stock-->
+            <?php
+                if ( $result['product_inStock'] < 10 ) {
+            ?><p class="productLowInventory"></p>
+            <?php
+                } 
+                else {
+                ?>
+                <p class="productInventory">   <!--inventory for products-->
+                <?php echo $result['product_inStock']; ?> in Stock    
+                </p>
+                <?php
+                }
+                ?>
+                
+            </div>
+        <?php
+            } // end loop
+        ?>
     </section>
 
 </body>
