@@ -1,0 +1,329 @@
+@font-face { font-family: VarsityTeam-Bold; src: url('VarsityTeam-Bold.otf'); } 
+.varsity { font-family: VarsityTeam-Bold; }
+
+@font-face { font-family: CFRemingtonTypewriter-Regul; src: url('CFRemingtonTypewriter-Regul.ttf'); } 
+.type { font-family: CFRemingtonTypewriter-Regul; }
+
+
+* {
+  box-sizing: border-box;
+}
+
+.grid {
+  display: grid;
+background-color: #e1e0e6;
+font-family:CFRemingtonTypewriter-Regul;
+  grid-row-gap: 0;
+  grid-column-gap:0;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+  text-align: center;
+  /*set no height, let child set it */
+}
+
+.grid2 {
+  display: grid;
+background-color: #030303;
+font-family:CFRemingtonTypewriter-Regul;
+  grid-row-gap: 0;
+  grid-column-gap:0;
+  grid-template-columns: auto auto auto;
+  width: 100%;
+  text-align: center;
+  
+  /*set no height, let child set it */
+}
+
+.item1 {
+  /*arbitrary height, could be less, more, or grow depending on the content */
+  font-size: 32px;
+  color: white;
+  background-color: rgb(255, 253, 253);
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.item1 img {
+  height:100%;
+  width:100%;
+}
+
+.item2 {
+  position: relative;
+  text-align: center;
+  font-size:5vw;
+  text-shadow: 10px 10px #222222;
+  font-family: VarsityTeam-Bold;
+  color: rgb(255, 255, 255);
+  background-color: #e1e0e6;
+  border: 2px solid white;
+  grid-column-start: 3;
+  grid-column-end: 12;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.item2 img {
+  height:100%;
+  width:100%;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+}
+
+.item3 {
+  font-size: 32px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border: 2px solid white;
+  grid-column-start: 3;
+  grid-column-end: 12;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.item3 nav{
+  height:100%;
+  width:100%;
+}
+
+
+.item4 {
+  font-size: 32px;
+  color: white;
+  background-color: #e1e0e6;
+  text-align: center;
+  border: 2px solid white;
+  grid-column-start: 1;
+  grid-column-end: 12;
+}
+
+.item4 div {
+  padding:5px;
+}
+
+.item4 img {
+  padding-left:5px;
+  padding-right:5px;
+}
+
+h1{
+  padding-top: 100px;
+  font-size:65px;
+  font-family: VarsityTeam-Bold;
+}
+
+/* unvisited link */
+a:link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(161, 241, 255);
+  text-decoration: none;
+}
+
+/* selected link */
+a:active {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.item5 {
+  height:300px;
+  font-family: VarsityTeam-Bold;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border: 2px solid white;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-image: url('images/ez_shop_callout.jpg');
+}
+
+.item6 {
+  height:300px;
+  font-family: VarsityTeam-Bold;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border: 2px solid white;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-image: url('images/ez_branded_callout.jpg');
+}
+
+.item7 {
+  height:300px;
+  font-family: VarsityTeam-Bold;
+  color: white;
+  background-color: black;
+  text-align: center;
+  border: 2px solid white;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-image: url('images/ez_ourstory_callout.jpg');
+}
+
+.item8 {
+  height:auto;
+  font-family: VarsityTeam-Bold;
+  color: black;
+  background-color: #e1e0e6;
+  border: 2px solid white;
+  padding: 50px;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  background-image: url('');
+}
+
+.item8 h1 {
+  padding-top:10px;
+}
+
+form {
+  text-align:left;
+  font-size:24px;
+  padding-left:200px;
+}
+
+form.div {
+  margin-bottom:50px;
+}
+
+.container {
+  height:800px;
+  font-family: VarsityTeam-Bold;
+  color: rgb(5, 26, 71);
+  text-align: center;
+  align-items: center;
+  margin:30px;
+}
+
+.container h1 {
+  padding-top:18px;
+}
+
+.card {
+  font-family:CFRemingtonTypewriter-Regul;
+  font-size:25px;
+}
+
+.foot1 {
+  height:200px;
+  font-size: 28px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  padding-top:20px;
+}
+
+.foot2 {
+  line-height: 100px;
+  height:200px;
+  font-size: 32px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  grid-column-start: 5;
+  grid-column-end: 9;
+  padding:30px;
+}
+
+.foot2 img {
+  height:70px;
+  width:70px;
+}
+
+.foot3 {
+  height:200px;
+  font-size: 32px;
+  color: white;
+  background-color: black;
+  text-align: center;
+  padding-top:20px;
+  grid-column-start: 9;
+  grid-column-end: 12;
+}
+
+
+
+
+.icon {
+  border-radius: 30%;
+}
+
+.icon:hover {
+    opacity: 0.7;
+}
+
+
+@media (max-width: 600px) {
+
+  .foot1 {
+    display:none;
+  }
+
+  .foot2, .item2, .item3, .item4, .item8  {
+    grid-column-start: 1;
+    grid-column-end: 12;
+  }
+
+  .foot3 {
+    display:none;
+  }
+
+  .logo {
+    display:none;
+  }
+
+  form {
+    padding-left:15px;
+  }
+
+  .icon {
+    height:15%;
+    width:15%;
+  }
+
+  .item3 {
+    grid-column-start: 1;
+    grid-column-end: 12;
+  }
+
+  .item8{
+  padding:0;
+  }
+}
+
+/*
+@media only screen and (max-width: 500px) {
+  .item8 .item10 {
+  display:none;
+}
+
+.item9 {
+  grid-column-start: 1;
+  grid-column-end: 12;
+}
+
+}
+*/
