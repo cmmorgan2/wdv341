@@ -1,13 +1,33 @@
 <?php
 //Model-Controller Area.  The PHP processing code goes in this area.
 require_once('functions.php');
-
+if(isset($_POST['submit']) && empty($_POST['address'])) {  //user is valid and not a bot
 // PHP form submission code goes here
+	
+if(empty($_POST['offers'])) {
+    $specialOffers = "No";
+}
+else {
+    $specialOffers = "Yes";
+}
+
+echo "Thanks so much! " . $_POST['first_name'] . " " . $_POST['last_name'] . "<br>";
+echo "We will be sending your subscription: " . $_POST['sub_type'] . "<br>";
+echo "Also, your requested these Special Offers: $specialOffers <br>";
+echo "You found us from: " . $_POST['dropdown'] . "<br>";
+echo "Your Sign Up confirmation is being sent to: " . $_POST['email'] . ". Thank you for your support!";
+
+}
 
 
-if(isset($POST))
+else {
+	
+	if(!empty($_POST['address'])) {
+		echo "An error has occurred. Unable to process form.";
+	}
 
 ?>
+
 <!DOCTYPE html>
 
 <head>
@@ -40,9 +60,15 @@ if(isset($POST))
         p{
             padding-left:10px;
         }
-        .address {
-            display:none;
-        }
+        p.honeypot {
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+            /*bots can detect a display:none and one or two layers of protection and need this additional hiding features to
+            keep the smarter bots from realizing it's a honeypot*/
+		}
     </style>
     </style>
 </head>
@@ -64,9 +90,9 @@ if(isset($POST))
             <p>Email: <input type="text" name="email" id="email" /></p>
 
         <h3>Please select a subscription type:</h3>
-                <input type="radio" id="normal" name="sub_type" value="NORMAL">
+                <input type="radio" id="normal" name="sub_type" value="Normal">
                 <label for="normal">Normal</label><br>
-                <input type="radio" id="expert" name="sub_type" value="EXPERT">
+                <input type="radio" id="expert" name="sub_type" value="Expert">
                 <label for="expert">Expert</label><br>
 
         <h3>Recieve special offers and latest updates?</h3>
@@ -74,11 +100,16 @@ if(isset($POST))
                 <label for="offers">Yes</label><br>
 
         <h3>How did you find us?</h3>
-                <select name = "dropdown">
-                <option value = "word" selected>Word of mouth</option>
+                <select name = "dropdown" id="dropdown" value="dropdown">
+                <option value = "word" selected>Word of Mouth</option>
                 <option value = "internet">Internet</option>
                 <option value = "podcast" required>Podcast</option>
                 </select>
+
+        <p class="honeypot">
+				<label for="address"></label>
+				<input type="text" name="address" id="address">
+		</p>
 
         <p>
             <input type="submit" name="submit" id="button" value="Submit" />
@@ -90,3 +121,8 @@ if(isset($POST))
 </body>
 
 </html>
+
+
+<?php
+}
+?> <!-- it's yer boy, that hanging bracket, here to save the day-->
