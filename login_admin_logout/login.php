@@ -17,17 +17,16 @@ session_start();
 
     //$validUser = false;  //asume invalid user until signed in
 
-    if(isset($_SESSION['user_name']) ){ // if valid user
+if(isset($_SESSION['user_name']) ){ // if valid user
         header("Location: admin_page.php?userName=" . $_SESSION['user_name']); //starting admin session - page load
-        }
+}       
 
         //processing when submit button used
-        if(isset($_POST['submit'])) {
+if(isset($_POST['submit'])) {
 
             //proces the login info against db
-        $loginName = $_POST['loginName'];
-        $loginPW = $_POST['loginPassword'];
-
+$loginName = $_POST['loginName'];
+$loginPW = $_POST['loginPassword'];
 
         //connect to db
         //create SQL stmt
@@ -36,10 +35,10 @@ session_start();
         // execute stmt
             // if valud user/pass then display admin info
             //else display "invalid user/pass" and show form again
+            
 
-
-    try {
-        require "dbConnect.php";
+try {
+    require "dbConnect.php";
                 
                 $sql = "SELECT event_user_name, event_user_password FROM event_user WHERE event_user_name=:userName AND event_user_password=:userPW";
                 $stmt = $conn->prepare($sql);
@@ -58,15 +57,15 @@ session_start();
             echo "Welcome Back $count";
         }
 */
-        if($user === false) {
+        if($user === false) {  // if this user is false / not a user / entered wrong info
 
-            echo "Incorrect Username/Password";
-        }
-        else {
-            $_SESSION['user_name'] = $user['event_user_name'];
+            echo "Incorrect Username/Password";  // error message comes out
+}
+        else { // otherwise we assume it's a real user
+            $_SESSION['user_name'] = $user['event_user_name']; //start session with correct user and pw info
 
-            header("Location: admin_page.php?userName=" . $loginName);
-        }
+            header("Location: admin_page.php?userName=" . $loginName); // takes you to admin page and logs in
+}
 
     /*$resultArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $numRows = count($resultArray);
@@ -77,17 +76,17 @@ session_start();
         }
         echo "working so far";
     }*/
-    }
-    catch(PDOExecption $e){
+}
+catch(PDOExecption $e){
 
         //$message = "There has been a problem. System Admin has been contaced."
 
         //error_log($e->getMessage());
         //error_log(var_dump(debug-backtrace()));
-    }
+}
     //else{
         //echo "form needs to be displayed to the user"
-    }
+}
 ?> <!--ends php-->
 
 <html>
