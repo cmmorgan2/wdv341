@@ -1,132 +1,55 @@
 <?php
-/*
-    connect to database   dbConnect
+include 'dbconnect.php';
 
-    write my SQL command
-    prepare your statement using the SQL command
-    bind parameters if you have any
-    run your command/statement
+try {
+    $sql = "SELECT * FROM wdv341_events";
+    $stmt = $conn->prepare($sql);  //prepares stmt
+    $stmt->execute();  //result object is still in db format
 
-    result is store in the stamtent object
+    //$result = $stmt->fethc(PDO::FETCH_ASSOC);
 
-    get result out of the database like format into php format
-        fetch()
+    //echo $result['events_id'];
+    //echo $result['events_name'];
 
-    for each row/event puled from the database disaply the fields for that event
-
-    formatting the output
-
+    /*foreach( $stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+        echo "<p>";
+        echo $row["events_id"];
+        echo "<br>";
+        echo $row["events_name"];
+        echo "<br>";
+        echo $row["events_date"];
+    }
 */
-//$serverName = "localhost";  
-//$databaseName = "wdv341";
-//$username = "root";
-//$password = "root";
 
-//$conObject = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
+    }//end of try
 
-//$sql = "SELECT event_name,event_description FROM wdv341_events";   //preparing the object
-
-//$statementObject = $conObject->prepare($sql);   //runs sql command
-
-//$statementObject->execute();    //catching inside the statementObject
-
-//$arrayOfRows = $statementObject->fetchAll(PDO::FETCH_ASSOC);  //convert from databse to php array
-//$arrayOfRows is a PHP array
-
-//foreach($arrayOfRows as $oneRowOfData){
-//    echo $oneRowOfData['event_name'];
-//    echo $oneRowOfData['event_description'];
-//    echo "<br>";
-//}
-
-//$conObject = null;  //close first connection object
-
-//SELECT one record from the table using WHERE
-
-//$conObject2 = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
-
-//$sql = "SELECT event_name,event_description FROM wdv341_events";   //preparing the object
-
-//$statementObject = $conObject2->prepare($sql);   //runs sql command
-
-//$statementObject->execute();    //catching inside the statementObject
-
-//$selectedRow = $statementObject->fetch(PDO::FETCH_ASSOC);
-
-//echo #selectedRow['event_name'];
-//echo #selectedRow['event_description'];
-
-require "dbConnect.php";
-
-try 
-{
-    $sql = "SELECT events_id, events_name, events_description, events_presenter, events_date, events_time, events_date_inserted, events_date_updated FROM wdv341_events";
-    $stmt = $conn->prepare($sql);
-    
-    $stmt->execute();
-
-    $arrayOfRows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
 catch(PDOException $e){
-    echo "Error: " . $e->getMessage();
+    echo "Errors: " . $e->getMessage();
 }
 ?>
 
-<html>
+<!DOCTYPE html>
 <head>
-<style>
-table, th, td {
-  border: 2px solid #445434;
-}
-table {
-  width: 100%;
-}
-td {
-    padding: 15px;
-}
-th {
-    background:#d8f3e5;
-}
-
-</style>
-
-
+    <title> It's a Document </title>
 </head>
-    <body>
-<table>
-<tr>
-    <th>Events Id</th>
-    <th>Event Name</th>
-    <th>Description</th>
-    <th>Presenter</th>
-    <th>Date</th>
-    <th>Time</th>
-    <th>Date Inserted</th>
-    <th>Date Updated</th>
-</tr>
-    
-<?php
+<body>
+    <h1> ALL EVENTS FROM THE EVENTS TABLE</h1>
+    <?php
+        foreach( $stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+            echo "<p>";
+            echo $row["events_id"];
+            echo "<br>";
+            echo $row["events_name"];
+            echo "<br>";
+            echo $row["events_date"];
+            echo "<p>";
+            echo "<p>Update Link</p>";
+            echo "<p><a href='updateEvent.php?eventId='" . $row["events_id"] . "'>Update Link</p>";
+            echo "<p><a href='deleteEvent.php?eventId='" . $row["events_id"] . "'>Delete Link</p>";
+        }
 
-foreach($arrayOfRows as $oneEvent) {
-
-    echo "<tr>";
-
-    echo "<td>".$oneEvent["events_id"]."</td>";
-    echo "<td>".$oneEvent["events_name"]."</td>";
-    echo "<td>".$oneEvent["events_description"]."</td>";
-    echo "<td>".$oneEvent["events_presenter"]."</td>";
-    echo "<td>".$oneEvent["events_date"]."</td>";
-    echo "<td>".$oneEvent["events_time"]."</td>";
-    echo "<td>".$oneEvent["events_date_inserted"]."</td>";
-    echo "<td>".$oneEvent["events_date_updated"]."</td>";
-
-    echo "</tr>";
-
-}
+    ?><!--end of php-->
 
 
-?>
 
-</table>
 </body>
-</html>
